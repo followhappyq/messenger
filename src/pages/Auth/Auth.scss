@@ -13,9 +13,19 @@
     }
   }
 
-  &__register_link {
+  &__register-link {
     text-align: center;
     display: block;
+    color: #adadad;
+  }
+
+  &__success-block {
+    text-align: center;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .button {
