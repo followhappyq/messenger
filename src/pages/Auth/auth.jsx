@@ -1,8 +1,8 @@
-import React from "react";
-import { LoginForm, RegisterForm } from "../../modules/modules";
-import { Route } from "react-router-dom";
+import React from "react"
+import { LoginForm, RegisterForm } from "../../modules/modules"
+import { Route } from "react-router-dom"
 
-import "./Auth.scss";
+import "./Auth.scss"
 
 const Auth = () => {
   return (
@@ -12,7 +12,7 @@ const Auth = () => {
         <Route exact path="/register" component={RegisterForm} />
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Auth;
+export default Auth

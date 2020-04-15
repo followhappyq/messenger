@@ -11,6 +11,7 @@ import {
 } from "@ant-design/icons";
 import { Button, Block } from "../../../components/index";
 
+
 export default class RegisterForm extends Component {
   render() {
     const success = false;
