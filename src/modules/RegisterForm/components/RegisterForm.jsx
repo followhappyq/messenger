@@ -10,6 +10,7 @@ import {
   MailTwoTone,
 } from "@ant-design/icons"
 import { Button, Block } from "../../../components/index"
+import validateField from "../../../utils/helpers/validateField"
 
 const success = false
 
@@ -46,9 +47,7 @@ const RegisterForm = (props) => {
               />
             </Form.Item>
             <Form.Item
-              validateStatus={
-                !touched.email ? "" : errors.email ? "error" : "success"
-              }
+              validateStatus={validateField("email", touched, errors)}
               hasFeedback
               onChange={handleChange}
               onBlur={handleBlur}
@@ -64,9 +63,7 @@ const RegisterForm = (props) => {
             </Form.Item>
 
             <Form.Item
-              validateStatus={
-                !touched.password ? "" : errors.password ? "error" : "success"
-              }
+              validateStatus={validateField("password", touched, errors)}
               hasFeedback
               onChange={handleChange}
               onBlur={handleBlur}
