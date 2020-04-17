@@ -42,8 +42,8 @@ const Message = ({
         )}
         <div className="message__attachments">
           {attachments &&
-            attachments.map((item) => (
-              <div className="message__attachments-item">
+            attachments.map((item, index) => (
+              <div key={index} className="message__attachments-item">
                 <img src={item.url} alt={item.filename} />
               </div>
             ))}
