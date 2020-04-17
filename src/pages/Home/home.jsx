@@ -2,48 +2,38 @@ import React from "react"
 
 import "./home.scss"
 //import Message from "../../components/Message/Message"
-import DialogItem from "../../components/DialogItem/DialogItem"
+import { Dialogs } from "../../components/"
 
 const Home = () => {
   return (
     <section className="home">
-      <div className="dialogs">
-        <DialogItem
-          user={{
-            login: "happyq",
-            isOnline: true,
-          }}
-          unreaded={0}
-        />
-        <DialogItem
-          user={{
-            login: "happyq",
-            isOnline: true,
-          }}
-          unreaded={0}
-        />
-        <DialogItem
-          user={{
-            login: "happyq",
-            isOnline: true,
-          }}
-          unreaded={0}
-        />
-      </div>
-
-      {/* <Dialog items={[
-        {
-          user: {
-            login: "happyq",
-            avatar: null
-          },
-          message: {
+      <Dialogs
+        userId={0}
+        items={[
+          {
+            _id: "d583667ba83397298563a0cfgf25af133",
             text: "Lorem lorem lorem",
-            isReaded: false,
-            created_at: new Date()
-          }
-        }
-      ]} /> */}
+            created_at: new Date(1),
+            user: {
+              _id: "d583667ba83397298563a0acff25af133",
+              login: "happyq",
+              avatar: null,
+            },
+          },
+          {
+            _id: "d583667ba8339729856s3a0cff25af133",
+            text: "Hello darkness my old friend",
+            created_at: new Date(),
+            user: {
+              _id: "d583667ba83397298563a0cff25af133",
+              login: "Rossi",
+              avatar:
+                "https://sun9-29.userapi.com/c851028/v851028465/6e5da/_5LJFute2So.jpg?ava=1",                
+              isOnline: true
+            },
+          },
+        ]}
+      />
       {/* <Message
         avatar="https://sun9-41.userapi.com/c636828/v636828900/307b3/mUX28LPdDk4.jpg?ava=1"
         text="И казармы с боевым пропуском местами поменяли"

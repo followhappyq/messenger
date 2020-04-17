@@ -1,9 +1,9 @@
-import React from "react";
-import { Button as BaseButton } from "antd";
-import PropTypes from "prop-types";
-import classNames from "classnames";
+import React from "react"
+import { Button as BaseButton } from "antd"
+import PropTypes from "prop-types"
+import classNames from "classnames"
 
-import "./Button.scss";
+import "./Button.scss"
 
 const Button = (props) => {
   return (
@@ -13,11 +13,11 @@ const Button = (props) => {
       })}
       {...props}
     />
-  );
-};
+  )
+}
 
 Button.propTypes = {
   className: PropTypes.string,
-};
+}
 
-export default Button;
+export default Button
