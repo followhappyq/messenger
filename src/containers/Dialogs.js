@@ -1,24 +1,22 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import { Dialogs as BaseDialogs } from "../components"
 
-const Dialogs = ({ items, userId }) => {
-  const [inputValue, setValue] = useState("")
-  let filtred = Array.from(items)
+const Dialogs = ({ items, userId, inputValue }) => {
+  const [filtred, setFiltredItems] = useState(Array.from(items))
 
-  const onChangeInput = (value) => {
-    filtred = filtred.filter((dialog) => dialog.user.login.indexOf(value >= 0))
-    setValue(value)
+  const onChangeInput = () => {
+    setFiltredItems(
+      items.filter((dialog) => dialog.user.login.indexOf(inputValue) >= 0)
+    )
   }
 
-  return (
-    <BaseDialogs
-      userId={userId}
-      items={filtred}
-      onSearch={onChangeInput}
-      inputValue={inputValue}
-    />
-  )
+  useEffect(() => {
+    items.length && onChangeInput()
+    // eslint-disable-next-line
+  }, [items])
+
+  return <BaseDialogs userId={userId} items={filtred} />
 }
 
 export default Dialogs

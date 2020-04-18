@@ -4,7 +4,7 @@ import orderBy from "lodash/orderBy"
 import "./Dialogs.scss"
 import { DialogItem } from "../"
 
-const Dialogs = ({ items, userId, onSearch }) => (
+const Dialogs = ({ items, userId, onSearch, inputValue }) => (
   <div className="dialogs">
     {orderBy(items, ["created_at"], ["desc"]).map((item) => (
       <DialogItem

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Input } from "antd"
 import { EllipsisOutlined, MenuOutlined } from "@ant-design/icons"
 
@@ -7,6 +7,8 @@ import { Message, Status, ChatInput } from "../../components/"
 import { Dialogs } from "../../containers/"
 
 const Home = () => {
+  const [inputValue, setState] = useState("")
+
   return (
     <section className="home">
       <div className="chat">
@@ -16,13 +18,17 @@ const Home = () => {
             <div className="chat__sidebar-header-search">
               <Input.Search
                 placeholder="Search"
-                onSearch={(value) => console.log(value)}
+                onChange={(e) => {
+                  setState(e.target.value)
+                }}
+                value={inputValue}
               />
             </div>
           </div>
           <div className="chat__sidebar-dialogs">
             <Dialogs
               userId={0}
+              inputValue={inputValue}
               items={[
                 {
                   _id: "5e99b6051f6cdd8549ad74b7",
