@@ -10,34 +10,46 @@ const getMessageTime = (created_at) => {
   if (isToday(created_at)) {
     return format(created_at, "HH:mm")
   } else {
-    return format(created_at, "DD:MM:YYYY")
+    return format(created_at, "DD.MM.YYYY")
   }
 }
 
 
-const DialogItem = ({ user, message, unread, isMe }) => (
+const DialogItem = ({
+  _id,
+  user,
+  undread,
+  created_at,
+  text,
+  isMe,
+  currentDialogId,
+  onSelect
+}) => (
   <div
     className={classNames("dialogs__item", {
-      "dialogs__item-online": user.isOnline,
+      "dialogs__item--online": user.isOnline,
+      "dialogs__item--selected": currentDialogId === _id
     })}
   >
     <div className="dialogs__item-avatar">
-      {<Avatar user={user}/>}
+      <Avatar user={user} />
     </div>
     <div className="dialogs__item-info">
       <div className="dialogs__item-info-top">
-        <b>{user.login} </b>
-        <span>{getMessageTime(message.created_at)}</span>
+        <b>{user.login}</b>
+        <span>{getMessageTime(created_at)}</span>
       </div>
       <div className="dialogs__item-info-bottom">
-        <p>{message.text}</p>
-        {isMe && <IconReaded isMe={true} isReaded={true} />}
-        {unread > 0 && (
-          <div className="dialogs__item-info-bottom-count">{unread}</div>
+        <p>{text}</p>
+        {isMe && <IconReaded isMe={true} isReaded={false} />}
+        {undread > 0 && (
+          <div className="dialogs__item-info-bottom-count">
+            {undread > 9 ? "+9" : undread}
+          </div>
         )}
       </div>
     </div>
   </div>
-)
+);
 
 export default DialogItem

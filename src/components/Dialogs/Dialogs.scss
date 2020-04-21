@@ -1,17 +1,28 @@
 @import '../../styles/variables';
 
 .dialogs {
-  width: 320px;
+  &__search {
+    margin: 10px 20px;    
+  }
+
   &__item {
-    display: flex;
     $item: &;
-    margin-bottom: 15px;
+
+    &:hover {
+      background-color: #f3f7ff;
+    }
+
+    &--selected,
+    &--selected:hover {
+      background-color: #1890ff;
+      color: #fff !important;
+    }
 
     &-avatar {
       position: relative;
-      flex: 0 0 50px;
-      width: 50px;
-      height: 50px;
+      flex: 0 0 40px;
+      width: 40px;
+      height: 40px;
       margin-right: 10px;
       img {
         width: 100%;
@@ -20,20 +31,20 @@
       }
     }
 
-    &-online {
-      #{$item}-avatar{
+    &--online {
+      #{$item}-avatar {
         &::before {
           display: block;
           position: absolute;
-          bottom: -3px;
+          bottom: -2px;
           right: 0;
-          content: '';
-          background-color: $green;
+          content: "";
+          background-color: #00c980;
           border-radius: 30px;
-          width: 14px;
-          height: 14px;
+          width: 13px;
+          height: 13px;
           border: 3px solid #fff;
-        }        
+        }
       }
     }
 
@@ -42,10 +53,10 @@
       flex-direction: column;
       justify-content: center;
       flex: 1;
-      &-top{
+      &-top {
         display: flex;
         b {
-          font-weight: bold;
+          font-weight: 500;
           font-size: 14px;
           flex: 1;
           margin-bottom: 6px;
@@ -57,29 +68,29 @@
       &-bottom {
         position: relative;
         p {
-          opacity: 0.5;
+          opacity: 0.7;
           text-overflow: ellipsis;
-          overflow: hidden; 
-          width: 230px; 
-          height: 1.2em; 
+          overflow: hidden;
+          width: 220px;
+          height: 1.2em;
           white-space: nowrap;
         }
-        &-count {          
+        &-count {
           position: absolute;
           right: 0;
           bottom: 0;
           background: #f46b6b;
           color: #fff;
-          font-weight: 500;
-          width: 18px;
+          font-weight: bold;
+          width: 100%;
+          min-width: 18px;
+          max-width: 22px;
           height: 18px;
           border-radius: 30px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 12px;
-          font-weight: bold;
-          box-shadow: 0 0 0 3px #fff;
+          font-size: 11px;
+          text-align: center;
+          line-height: 17px;
+          box-shadow: 0 0 0px 3px #fff;
         }
         .message__icon-readed {
           bottom: 0;
