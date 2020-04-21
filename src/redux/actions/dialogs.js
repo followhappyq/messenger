@@ -4,6 +4,9 @@ const actions = {
   setDialogs: items => ({
     type: "DIALOGS:SET_ITEMS",
     payload: items
+  }),setDialogs: items => ({
+    type: "DIALOGS:SET_ITEMS",
+    payload: items
   }),
   fetchDialogs: () => dispatch => {
     dialogsApi.getAll().then(({data}) => {
