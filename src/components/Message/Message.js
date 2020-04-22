@@ -22,10 +22,8 @@ const Message = ({
     })}
   >
     <div className="message__content">
-      {console.log(text)}
       <IconReaded isMe={isMe} isReaded={isReaded} />
       <div className="message__avatar">
-        {console.log(user)}
         <Avatar user={user} />
       </div>
       <div className="message__info">

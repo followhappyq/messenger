@@ -15,10 +15,14 @@ const Dialogs = ({ currentDialogId, fetchMessages, items, isLoading }) => {
   }, [currentDialogId])
 
   useEffect(() => {
-    messagesRef.current.scrollTo(0, messagesRef.current.scrollHeight)
+    if (messagesRef.current) {
+      messagesRef.current.scrollTo(0, messagesRef.current.scrollHeight)
+    }
   })
 
-  return <BaseMessages items={items} isLoading={isLoading} />
+  return (
+    <BaseMessages items={items} isLoading={isLoading} blockRef={messagesRef} />
+  )
 }
 
 export default connect(
