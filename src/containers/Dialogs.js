@@ -13,7 +13,6 @@ const Dialogs = ({
 }) => {
   const [inputValue, setValue] = useState("")
   const [filtred, setFiltredItems] = useState(Array.from(items))
-
   const onChangeInput = (value) => {
     setFiltredItems(
       items.filter(
@@ -30,6 +29,7 @@ const Dialogs = ({
     } else {
       setFiltredItems(items)
     }
+    // eslint-disable-next-line
   }, [items])
 
   return (

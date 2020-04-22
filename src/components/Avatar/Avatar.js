@@ -8,6 +8,7 @@ const Avatar = ({ user }) => {
     return <img src={user.avatar} alt="avatar" />
   } else {
     const { color, colorLighten } = generateAvatarFromHash(user._id)
+
     const firstChar = user.login[0]
     return (
       <div

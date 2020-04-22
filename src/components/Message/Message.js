@@ -3,10 +3,9 @@ import PropTypes from "prop-types"
 import classNames from "classnames"
 
 import "./Message.scss"
-import { Time, IconReaded } from "../"
+import { Time, IconReaded, Avatar } from "../"
 
 const Message = ({
-  avatar,
   user,
   text,
   date,
@@ -23,9 +22,11 @@ const Message = ({
     })}
   >
     <div className="message__content">
+      {console.log(text)}
       <IconReaded isMe={isMe} isReaded={isReaded} />
       <div className="message__avatar">
-        <img src={avatar} alt={`Avatar ${user.fullname}`} />
+        {console.log(user)}
+        <Avatar user={user} />
       </div>
       <div className="message__info">
         {(text || isTyping) && (
