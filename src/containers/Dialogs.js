@@ -23,14 +23,14 @@ const Dialogs = ({
     setValue(value)
   }
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (!items.length) {
       fetchDialogs()
     } else {
       setFiltredItems(items)
     }
     // eslint-disable-next-line
-  }, [items])
+  }, [items]) */
 
   return (
     <BaseDialogs

@@ -21,3 +21,4 @@ Tinycolor
 date-fns
 formik
 navjobs/upload
+emoji-mart

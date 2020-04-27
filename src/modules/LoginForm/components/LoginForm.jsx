@@ -14,6 +14,7 @@ const LoginForm = (props) => {
     handleChange,
     handleBlur,
     handleSubmit,
+    isSubmitting,
   } = props
 
   return (
@@ -54,13 +55,13 @@ const LoginForm = (props) => {
               value={values.password}
             />
           </Form.Item>
-
           <Form.Item>
             <Button
               type="primary"
               htmlType="submit"
               size="large"
               onClick={handleSubmit}
+              disabled={isSubmitting}
             >
               Sign In
             </Button>
