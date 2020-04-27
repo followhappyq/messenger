@@ -7,7 +7,13 @@ export default ({ isAuth, values, errors }) => {
         errors.email = "E-mail is invalid or already taken"
       }
     },
+    login: (value) => {
+      if (!isAuth && !value) {
+        errors.login = "Login can't be blank"
+      }
+    },
     password: (value, isAuth) => {
+      console.log(values)
       if (!value) {
         errors.password =
           "Passwords must contain: a minimum of 1 lower case letter [a-z],1 upper case letter [A-Z] ,1 numeric character [0-9]."
@@ -18,6 +24,11 @@ export default ({ isAuth, values, errors }) => {
         errors.password = isAuth
           ? "Incorrect password"
           : "Passwords must contain: a minimum of 1 lower case letter [a-z],1 upper case letter [A-Z] ,1 numeric character [0-9]."
+      }
+    },
+    password_2: (value, isAuth) => {
+      if ((!isAuth && value != values.password) || !value) {
+        errors.password_2 = "Password does not match"
       }
     },
   }

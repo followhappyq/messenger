@@ -2,15 +2,14 @@ import React from "react"
 
 import { Link } from "react-router-dom"
 
-import { Form, Input } from "antd"
+import { Form } from "antd"
 import {
   UserOutlined,
   LockOutlined,
   MailOutlined,
   MailTwoTone,
 } from "@ant-design/icons"
-import { Button, Block } from "../../../components/index"
-import validateField from "../../../utils/helpers/validateField"
+import { Button, Block, FormField } from "../../../components/index"
 
 const success = false
 
@@ -39,53 +38,48 @@ const RegisterForm = (props) => {
               remember: true,
             }}
           >
-            <Form.Item>
-              <Input
-                placeholder="Login"
-                prefix={<UserOutlined />}
-                size="large"
-              />
-            </Form.Item>
-            <Form.Item
-              validateStatus={validateField("email", touched, errors)}
-              hasFeedback
-              onChange={handleChange}
-              onBlur={handleBlur}
-              help={!touched.email ? " " : errors.email}
-            >
-              <Input
-                id="email"
-                placeholder="E-mail"
-                prefix={<MailOutlined />}
-                size="large"
-                value={values.email}
-              />
-            </Form.Item>
-
-            <Form.Item
-              validateStatus={validateField("password", touched, errors)}
-              hasFeedback
-              onChange={handleChange}
-              onBlur={handleBlur}
-              help={!touched.password ? " " : errors.password}
-            >
-              <Input.Password
-                id="password"
-                type="password"
-                placeholder="Password"
-                prefix={<LockOutlined />}
-                size="large"
-                value={values.password}
-              />
-            </Form.Item>
-
-            <Form.Item>
-              <Input.Password
-                placeholder="Confirm Password"
-                prefix={<LockOutlined />}
-                size="large"
-              />
-            </Form.Item>
+            <FormField
+              name="email"
+              prefix={<MailOutlined />}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              touched={touched}
+              errors={errors}
+              values={values}
+              placeholder="E-mail"
+            />
+            <FormField
+              name="login"
+              prefix={<UserOutlined />}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              touched={touched}
+              errors={errors}
+              values={values}
+              placeholder="Login"
+            />
+            <FormField
+              name="password"
+              prefix={<LockOutlined />}
+              type="password"
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              touched={touched}
+              errors={errors}
+              values={values}
+              placeholder="Password"
+            />
+            <FormField
+              name="password_2"
+              prefix={<LockOutlined />}
+              handleChange={handleChange}
+              type="password"
+              handleBlur={handleBlur}
+              touched={touched}
+              errors={errors}
+              values={values}
+              placeholder="Confirm Password"
+            />
 
             <Form.Item>
               {dirty && !isValid && <span>Error</span>}
