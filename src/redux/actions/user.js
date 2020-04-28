@@ -12,7 +12,7 @@ const actions = {
     })
   },
   fetchUserLogin: (postData) => (dispatch) => {
-    return userApi.login(postData).then(({ data }) => {
+    return userApi.signIn(postData).then(({ data }) => {
       const { status, token } = data
       if (status === "error") {
         notification({
@@ -30,6 +30,12 @@ const actions = {
         window.localStorage["token"] = token
         dispatch(actions.fetchUserData())
       }
+      return data
+    })
+  },
+  fetchUserRegister: (postData) => (dispatch) => {
+    return userApi.signUp(postData).then(({ data }) => {
+      console.log(data)
       return data
     })
   },

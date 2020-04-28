@@ -67,7 +67,7 @@ const LoginForm = (props) => {
             </Button>
           </Form.Item>
 
-          <Link className="auth__register-link" to="/register">
+          <Link className="auth__register-link" to="/signup">
             Create an account
           </Link>
         </Form>

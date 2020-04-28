@@ -23,6 +23,7 @@ const RegisterForm = (props) => {
     handleSubmit,
     dirty,
     isValid,
+    isSubmitting,
   } = props
 
   return (
@@ -85,6 +86,7 @@ const RegisterForm = (props) => {
               {dirty && !isValid && <span>Error</span>}
               <Button
                 onClick={handleSubmit}
+                disabled={isSubmitting}
                 type="primary"
                 htmlType="submit"
                 size="large"
@@ -92,7 +94,7 @@ const RegisterForm = (props) => {
                 Register
               </Button>
             </Form.Item>
-            <Link className="auth__register-link" to="/login">
+            <Link className="auth__register-link" to="/signin">
               Sign In
             </Link>
           </Form>
