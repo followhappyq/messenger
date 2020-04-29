@@ -7,6 +7,9 @@ import { Provider } from "react-redux"
 import "./styles/index.scss"
 import "emoji-mart/css/emoji-mart.css"
 import store from "./redux/store"
+import { userActions } from "./redux/actions"
+
+store.dispatch(userActions.fetchUserData())
 
 ReactDOM.render(
   <Provider store={store}>

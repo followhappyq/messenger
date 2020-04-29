@@ -8,10 +8,19 @@ import { Picker } from "emoji-mart"
 import "./ChatInput.scss"
 
 const ChatInput = (props) => {
+  const [value, setValue] = useState("")
   const [emojiPickerVisible, setShowEmojiPicker] = useState("")
+  const { onSendMessage, currentDialogId } = props
 
   const toggleEmojiPicker = () => {
     setShowEmojiPicker(!emojiPickerVisible)
+  }
+
+  const handleSendMessage = (e) => {
+    if (e.keyCode === 13 && value.trim()) {
+      onSendMessage(value, currentDialogId)
+      setValue("")
+    }
   }
 
   return (
@@ -25,7 +34,13 @@ const ChatInput = (props) => {
         <SmileOutlined onClick={toggleEmojiPicker} />
       </div>
 
-      <Input size="large" placeholder="Write a message..." />
+      <Input
+        size="large"
+        placeholder="Write a message..."
+        onChange={(e) => setValue(e.target.value)}
+        onKeyUp={handleSendMessage}
+        value={value}
+      />
       <div className="chat-input__actions">
         <UploadField
           onFiles={(files) => console.log(files)}

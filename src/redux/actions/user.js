@@ -12,15 +12,10 @@ const actions = {
     })
   },
   fetchUserLogin: (postData) => (dispatch) => {
-    return userApi.signIn(postData).then(({ data }) => {
-      const { status, token } = data
-      if (status === "error") {
-        notification({
-          title: "Authentication failed.",
-          text: "Incorrect login or password.",
-          type: "error",
-        })
-      } else {
+    return userApi
+      .signIn(postData)
+      .then(({ data }) => {
+        const { token } = data
         notification({
           title: "Success",
           text: "Authorization has been successful.",
@@ -29,13 +24,20 @@ const actions = {
         window.axios.defaults.headers.common["token"] = token
         window.localStorage["token"] = token
         dispatch(actions.fetchUserData())
-      }
-      return data
-    })
+        return data
+      })
+      .catch(({ response }) => {
+        if (response.status === 403) {
+          notification({
+            title: "Authentication failed.",
+            text: "Incorrect login or password.",
+            type: "error",
+          })
+        }
+      })
   },
   fetchUserRegister: (postData) => (dispatch) => {
     return userApi.signUp(postData).then(({ data }) => {
-      console.log(data)
       return data
     })
   },

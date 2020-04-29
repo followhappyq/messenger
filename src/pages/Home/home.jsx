@@ -2,8 +2,7 @@ import React from "react"
 import { EllipsisOutlined, MenuOutlined } from "@ant-design/icons"
 
 import "./home.scss"
-import { Status, ChatInput } from "../../components/"
-import { Dialogs, Messages } from "../../containers/"
+import { Dialogs, Messages, ChatInput, Status } from "../../containers/"
 
 const Home = () => {
   return (
@@ -20,12 +19,8 @@ const Home = () => {
         <div className="chat__dialog">
           <div className="chat__dialog-header">
             <div></div>
-            <div className="chat__dialog-header-center">
-              <b className="chat__dialog-header-username">happyq</b>
-              <div className="chat__dialog-header-status">
-                <Status online={true} />
-              </div>
-            </div>
+            <Status online />
+
             <EllipsisOutlined style={{ fontSize: 20 }} />
           </div>
           <div className="chat__dialog-messages">
