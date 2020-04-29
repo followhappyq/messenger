@@ -20,7 +20,18 @@ const actions = {
     type: "MESSAGES:SET_IS_LOADING",
     payload: bool,
   }),
-  fetchSandMessages: (text, dialogId) => (dispatch) => {
+  removeMessageById: (id) => (dispatch) => {
+    console.log(id)
+    messagesApi
+      .removeById(id)
+      .then(({ data }) => {
+        dispatch({ type: "MESSAGES:REMOVE_MESSAGE", payload: id })
+      })
+      .catch(() => {
+        dispatch(actions.setIsLoading(false))
+      })
+  },
+  fetchSendMessages: (text, dialogId) => (dispatch) => {
     messagesApi.send(text, dialogId)
   },
   fetchMessages: (dialogId) => (dispatch) => {

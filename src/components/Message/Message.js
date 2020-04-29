@@ -2,6 +2,9 @@ import React from "react"
 import PropTypes from "prop-types"
 import classNames from "classnames"
 
+import { Popover, Button } from "antd"
+import { EllipsisOutlined } from "@ant-design/icons"
+
 import "./Message.scss"
 import { Time, IconReaded, Avatar } from "../"
 
@@ -13,6 +16,7 @@ const Message = ({
   isReaded,
   attachments,
   isTyping,
+  onRemoveMessage,
 }) => (
   <div
     className={classNames("message", {
@@ -23,6 +27,18 @@ const Message = ({
   >
     <div className="message__content">
       <IconReaded isMe={isMe} isReaded={isReaded} />
+      <Popover
+        content={
+          <div>
+            <Button onClick={onRemoveMessage}>Delete message</Button>
+          </div>
+        }
+        trigger="click"
+      >
+        <div className="message__icon-actions">
+          <EllipsisOutlined style={{ fontSize: 20 }} />
+        </div>
+      </Popover>
       <div className="message__avatar">
         <Avatar user={user} />
       </div>

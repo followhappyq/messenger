@@ -3,10 +3,10 @@ import PropTypes from "prop-types"
 import { Empty, Spin } from "antd"
 import classNames from "classnames"
 
-import { Message } from "../"
+import { Message } from "../index"
 import "./Messages.scss"
 
-const Messages = ({ blockRef, isLoading, items, user }) => {
+const Messages = ({ blockRef, isLoading, items, user, onRemoveMessage }) => {
   return (
     <div
       ref={blockRef}
@@ -21,6 +21,7 @@ const Messages = ({ blockRef, isLoading, items, user }) => {
               key={item._id}
               {...item}
               isMe={user._id === item.user._id}
+              onRemoveMessage={onRemoveMessage.bind(this, item._id)}
             />
           ))
         ) : (

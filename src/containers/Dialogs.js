@@ -33,6 +33,7 @@ const Dialogs = ({
     if (items.length) {
       onChangeInput()
     }
+    // eslint-disable-next-line
   }, [items])
 
   useEffect(() => {
