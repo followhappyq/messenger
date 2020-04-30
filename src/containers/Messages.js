@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react"
 import { connect } from "react-redux"
+import { Empty } from "antd"
 
 import socket from "../core/socket"
 import { messagesActions } from "../redux/actions"
@@ -32,17 +33,21 @@ const Dialogs = ({
   }, [currentDialogId])
 
   useEffect(() => {
-    messagesRef.current.scrollTo(0, 999999)
+    if (messagesRef.current) {
+      messagesRef.current.scrollTo(0, messagesRef.current.scrollHeight)
+    }
   }, [items])
 
-  return (
+  return currentDialogId ? (
     <BaseMessages
       user={user}
       blockRef={messagesRef}
       items={items}
-      isLoading={isLoading}
+      isLoading={isLoading && !user}
       onRemoveMessage={removeMessageById}
     />
+  ) : (
+    <Empty description="Open dialog" />
   )
 }
 

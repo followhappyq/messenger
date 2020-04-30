@@ -1,10 +1,25 @@
-import React from "react"
+import React, { useEffect } from "react"
+import { withRouter } from "react-router"
+import { connect } from "react-redux"
+
 import { EllipsisOutlined } from "@ant-design/icons"
 
+import { dialogsActions } from "../../redux/actions"
 import "./home.scss"
 import { Messages, ChatInput, Status, Sidebar } from "../../containers/"
 
-const Home = () => {
+const Home = (props) => {
+  const { setCurrentDialogId } = props
+
+  useEffect(() => {
+    const {
+      location: { pathname },
+    } = props
+    const dialogId = pathname.split("/").pop()
+    setCurrentDialogId(dialogId)
+    // eslint-disable-next-line
+  }, [props.location.pathname])
+
   return (
     <section className="home">
       <div className="chat">
@@ -28,4 +43,6 @@ const Home = () => {
   )
 }
 
-export default Home
+export default withRouter(
+  connect(({ user }) => ({ user: user.data }), dialogsActions)(Home)
+)

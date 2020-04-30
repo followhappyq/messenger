@@ -5,13 +5,7 @@ import socket from "../core/socket"
 import { dialogsActions } from "../redux/actions"
 import { Dialogs as BaseDialogs } from "../components"
 
-const Dialogs = ({
-  fetchDialogs,
-  currentDialogId,
-  items,
-  userId,
-  setCurrentDialogId,
-}) => {
+const Dialogs = ({ fetchDialogs, currentDialogId, items, userId }) => {
   const [inputValue, setValue] = useState("")
   const [filtred, setFiltredItems] = useState(Array.from(items))
   const onChangeInput = (value = "") => {
@@ -25,10 +19,6 @@ const Dialogs = ({
     setValue(value)
   }
 
-  const onNewDialog = () => {
-    fetchDialogs()
-  }
-
   useEffect(() => {
     if (items.length) {
       onChangeInput()
@@ -38,14 +28,14 @@ const Dialogs = ({
 
   useEffect(() => {
     fetchDialogs()
-    /* if (!items.length) {
-      fetchDialogs()
-    } else {
-      setFiltredItems(items)
-    } */
-    socket.on("SERVER:DIALOG_CREATED", onNewDialog)
 
-    return () => socket.removeListener("SERVER:DIALOG_CREATED", onNewDialog)
+    socket.on("SERVER:DIALOG_CREATED", fetchDialogs)
+    socket.on("SERVER:NEW_MESSAGE", fetchDialogs)
+
+    return () => {
+      socket.removeListener("SERVER:DIALOG_CREATED", fetchDialogs)
+      socket.removeListener("SERVER:NEW_MESSAGE", fetchDialogs)
+    }
     // eslint-disable-next-line
   }, [])
 
@@ -55,7 +45,6 @@ const Dialogs = ({
       items={filtred}
       onSearch={onChangeInput}
       inputValue={inputValue}
-      onSelectDialog={setCurrentDialogId}
       currentDialogId={currentDialogId}
     />
   )

@@ -15,14 +15,13 @@ const getMessageTime = (created_at) => {
   }
 }
 
-const DialogItem = ({ _id, isMe, currentDialogId, onSelect, lastMessage }) => (
+const DialogItem = ({ _id, isMe, currentDialogId, lastMessage, partner }) => (
   <Link to={`/dialog/${_id}`}>
     <div
       className={classNames("dialogs__item", {
         "dialogs__item--online": lastMessage.user.isOnline,
         "dialogs__item--selected": currentDialogId === _id,
       })}
-      onClick={onSelect.bind(this, _id)}
     >
       <div className="dialogs__item-avatar">
         <Avatar user={lastMessage.user} />
@@ -34,7 +33,7 @@ const DialogItem = ({ _id, isMe, currentDialogId, onSelect, lastMessage }) => (
         </div>
         <div className="dialogs__item-info-bottom">
           <p>{lastMessage.text}</p>
-          {isMe && <IconReaded isMe={true} isReaded={false} />}
+          {isMe && <IconReaded isMe={isMe} isReaded={lastMessage.readed} />}
           {lastMessage.undread > 0 && (
             <div className="dialogs__item-info-bottom-count">
               {lastMessage.undread > 9 ? "+9" : lastMessage.undread}

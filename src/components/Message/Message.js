@@ -1,6 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import classNames from "classnames"
+import reactStringReplace from "react-string-replace"
+import { Emoji } from "emoji-mart"
 
 import { Popover, Button } from "antd"
 import { EllipsisOutlined } from "@ant-design/icons"
@@ -13,7 +15,7 @@ const Message = ({
   text,
   date,
   isMe,
-  isReaded,
+  readed,
   attachments,
   isTyping,
   onRemoveMessage,
@@ -26,7 +28,7 @@ const Message = ({
     })}
   >
     <div className="message__content">
-      <IconReaded isMe={isMe} isReaded={isReaded} />
+      <IconReaded isMe={isMe} isReaded={readed} />
       <Popover
         content={
           <div>
@@ -45,7 +47,13 @@ const Message = ({
       <div className="message__info">
         {(text || isTyping) && (
           <div className="message__bubble">
-            {text && <p className="message__text">{text}</p>}
+            {text && (
+              <p className="message__text">
+                {reactStringReplace(text, /:(.+?):/g, (match, i) => (
+                  <Emoji emoji={match} set="apple" size={16} />
+                ))}
+              </p>
+            )}
             {isTyping && (
               <div className="message__typing">
                 <span></span>

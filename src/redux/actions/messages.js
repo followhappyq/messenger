@@ -31,8 +31,8 @@ const actions = {
         dispatch(actions.setIsLoading(false))
       })
   },
-  fetchSendMessages: (text, dialogId) => (dispatch) => {
-    messagesApi.send(text, dialogId)
+  fetchSendMessage: (text, dialogId, attachments) => (dispatch) => {
+    messagesApi.send(text, dialogId, attachments)
   },
   fetchMessages: (dialogId) => (dispatch) => {
     dispatch(actions.setIsLoading(true))
