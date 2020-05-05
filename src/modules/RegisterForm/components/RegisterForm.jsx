@@ -29,8 +29,9 @@ const RegisterForm = (props) => {
   return (
     <div>
       <div className="auth__top">
-        <h2>Registration</h2>
+        <h2>Registration\ Currently redirect isn't working</h2>
       </div>
+      {console.log(success)}
       <Block>
         {!success ? (
           <Form
